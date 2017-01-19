@@ -1,2 +1,3 @@
 # SpringBoard
-Notes, Ideas, and Projects related to my Springboard data science career track
+Notes, Ideas, Activities, and Projects related to Springboard's Data Science Career Track 
+
