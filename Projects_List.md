@@ -1,9 +1,9 @@
- # **List of Projects by Julio Cardenas-Rodriguez** 
+ # **List of Projects by Julio Cardenas-Rodriguez (click to follow link)** 
  
- 1. [03 Ideas for Capstone Project 01](https://github.com/jdatascientist/SpringBoard)
- 2. [Capstone Project 01 proposal](https://github.com/jdatascientist/SpringBoard)
- 3. JSON based data exercises
- 4. Work on XML based data exercises
+ 1. 03 Ideas for Capstone Project 01
+ 2. Capstone Project 01 proposal
+ 3. [JSON based data exercises](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/03_Jason)
+ 4. [Work on XML based data exercises](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/04_Xml)
  5. Mode Analytics case study
  6. Capstone Project 1: Data Wrangling
  7. Report on Data Science meetup
@@ -36,4 +36,4 @@
  34. Submit your solution to the Relax Inc. data science challenge 
  35. Mini-Project: Create a story toolbox 
  
-> Written with [StackEdit](https://stackedit.io/).
+ Written with [StackEdit](https://stackedit.io/).
