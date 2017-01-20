@@ -35,5 +35,4 @@
  33. Submit your solution to the KeepUp data science challenge 
  34. Submit your solution to the Relax Inc. data science challenge 
  35. Mini-Project: Create a story toolbox 
- 
  Written with [StackEdit](https://stackedit.io/).
