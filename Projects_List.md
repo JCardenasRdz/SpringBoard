@@ -2,7 +2,7 @@ List of Projects by Julio Cardenas-Rodriguez
 ============================================
 (click on to follow link)
 -------------------------
- 1. [03 Ideas for Capstone Project 01](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/01_Ideas_Capstone_01
+ 1. [03 Ideas for Capstone Project 01](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/01_Ideas_Capstone_01)
  2. Capstone Project 01 proposal
  3. [JSON based data exercises](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/03_Jason)
  4. [Work on XML based data exercises](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/04_Xml)
