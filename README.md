@@ -17,7 +17,7 @@ This repository contains all the data, learning activities and projects that are
  12. Capstone Project 1: Inferential Statistics Report
  13. Submit your Capstone Milestone Report
  14. Mini-Project: Informational Interviews
-15. [Linear Regression Mini-Project: Boston Housing](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/15_Linear_Regression)
+ 15. [Linear Regression Mini-Project: Boston Housing](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/15_Linear_Regression)
  16. [Logistic Regression: Heights and Weights](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/16_Logistic_Regression)
  17. Naive Bayes: Predicting movie ratings from reviews
  18. Clustering: Customer
