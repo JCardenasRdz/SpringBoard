@@ -17,7 +17,7 @@ List of Projects by Julio Cardenas-Rodriguez
  13. Submit your Capstone Milestone Report
  14. Mini-Project: Informational Interviews
  15. [Linear Regression Mini-Project: Boston Housing](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/15_Linear_Regression)
- 16. [Logistic Regression: Heights and Weights](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/16_Logistic_Regression)
+ 16. [Logistic Regression: Heights and Weights](https://github.com/JCardenasRdz/SpringBoard/blob/master/Projects/16_Logistic_Regression/Mini_Project_Logistic_Regression_Solution.ipynb)
  17. Naive Bayes: Predicting movie ratings from reviews
  18. [Clustering: Customer](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/18_Clustering)
  19. Complete & Submit Capstone Project
