@@ -18,7 +18,7 @@ Doug's presentation was mostly high-level view of the way he works with python i
 4. Unit testing.
 
 ### Pros
-1. Meeting other Python users.  
+1. Meeting other Python users  
 2. Make contacts to expand my network.  
 3. Learned about Pylint  
 
