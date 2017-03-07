@@ -1,1 +1,17 @@
+# excel
 *.xls*
+
+# check points
+.ipynb_checkpoints/
+
+#?
+__pycache__/
+
+# mac
+.DS_Store
+
+# Projects
+Projects/*/*.xls*
+Projects/*/__pycache__/*
+Projects/*/.DS_Store
+Projects/*/.ipynb_checkpoints/*

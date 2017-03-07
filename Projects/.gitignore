@@ -1,0 +1,11 @@
+# excel
+*.xls*
+
+# check points
+.ipynb_checkpoints/
+
+#?
+__pycache__/
+
+# mac
+.DS_Store
