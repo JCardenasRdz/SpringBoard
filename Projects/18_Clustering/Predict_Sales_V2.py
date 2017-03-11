@@ -23,3 +23,4 @@ y = df[['Total_Sales']]
 Xnod = df[df.columns.difference(['Total_Sales','offer_id'])]
 X = pd.get_dummies(Xnod, prefix=['cam', 'var','ori'])
 X = X.astype(float)
+
