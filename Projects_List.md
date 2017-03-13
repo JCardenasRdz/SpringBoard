@@ -10,7 +10,7 @@ List of Projects by Julio Cardenas-Rodriguez
  6. Capstone Project 1: Data Wrangling
  7. Report on Data Science meetup
  8. Work on your Data Story
- 9. EDA: Human Body Temperature
+ 9. [EDA: Human Body Temperature](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/09_EDA_Human_Body_Temperature)
  10. EDA: Examine Racial Discrimination
  11. EDA: Reduce Hospital Readmissions
  12. Capstone Project 1: Inferential Statistics Report
