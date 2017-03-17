@@ -8,6 +8,7 @@ import pandas as pd
 import sklearn.cluster as skc
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.metrics import silhouette_samples
 
 # Import data for transactions
 transactions = pd.read_excel("./WineKMC.xlsx",  sheetname=1, names=["customer_name", "offer_id"])
@@ -71,3 +72,16 @@ def cluster_counts():
     plt.figure(100,(5,5)); cluster_count.T.plot.bar();
     plt.xlabel('Clustering Method'); plt.ylabel('Number of members in each cluster')
 
+
+def mean_silhouette_scores(Xdata,range):
+    scores = np.zeros((len(range),1))
+    for idx,n_clusters in enumerate(range):
+        clusterer = KMeans(n_clusters=n_clusters, random_state=10)
+        cluster_labels = clusterer.fit_predict(Xdata)
+        scores[idx] = np.mean(silhouette_samples(Xdata, cluster_labels),axis=0)
+    plt.plot(range,scores,'o--')
+    plt.xlabel('Clusters')
+    plt.ylabel('Mean Silhouette Scores ')
+    plt.show()
+    
+    
