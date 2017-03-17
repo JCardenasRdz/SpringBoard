@@ -59,7 +59,7 @@ def describe_no_K_needed():
 # 0. Kmeans (just for fun, I did not use OneHotLabeling before)
 myK = np.arange(2,10); inertia = np.zeros_like(myK)
 def elbow_OneHot():
-    for idx,K in enumerate(myK):
+    for idx, K in enumerate(myK):
         inertia[idx] = skc.KMeans(n_clusters=K).fit(X).inertia_
     plt.figure(100,(5,5))
     plt.plot(myK,inertia,'-o'); plt.xlabel('Clusters');plt.ylabel('Inertia');
@@ -71,17 +71,4 @@ def cluster_counts():
         cluster_count[cols] = clusters[cols].value_counts()
     plt.figure(100,(5,5)); cluster_count.T.plot.bar();
     plt.xlabel('Clustering Method'); plt.ylabel('Number of members in each cluster')
-
-
-def mean_silhouette_scores(Xdata,range):
-    scores = np.zeros((len(range),1))
-    for idx,n_clusters in enumerate(range):
-        clusterer = KMeans(n_clusters=n_clusters, random_state=10)
-        cluster_labels = clusterer.fit_predict(Xdata)
-        scores[idx] = np.mean(silhouette_samples(Xdata, cluster_labels),axis=0)
-    plt.plot(range,scores,'o--')
-    plt.xlabel('Clusters')
-    plt.ylabel('Mean Silhouette Scores ')
-    plt.show()
-    
     
