@@ -16,27 +16,26 @@ def create_table(DF):
 
 def my_chi2(X):
     '''
-    chi2, p, _, expected_distribution = scipy.stats.chi2_contingency(X,correction=True)
+    chi2, p, _, expected_distribution = scipy.stats.chi2_contingency(X, correction=True)
     '''
-    chi2, p, _, expected_distribution = scipy.stats.chi2_contingency(X,correction=True)
-    print('The p-value is : '+str(p))
-    print('The test statistic is : '+str(chi2))
+    chi2, p, _, expected_distribution = scipy.stats.chi2_contingency(X, correction=True)
+    print('The p-value is : '+ '{:.3}'.format(p) )
+    print('The test statistic is : '+ '{:.3}'.format(chi2) )
     print('The expected distribution is :')
     print(round(expected_distribution))
-    
-def prepare_for_classification(DF):
+
+def prepare_for_classification(mydf):
     '''
     X = yearsexp, 'sex', education, 'race', manager
     Y = call 
     '''
-    df = DF[['yearsexp','sex','education','race','manager']].copy()
+    df = mydf[['yearsexp','sex','education','race','manager']].copy()
     df['sex'][df['sex']=='f']=1.0
     df['sex'][df['sex']=='m']=0.0
     df['race'][df['race']=='w']=0.0
     df['race'][df['race']=='b']=1.0
     X = df.values
-    y = DF.call.values
-    df['Call'] = DF.call
+    y = mydf.call.values
     return X,y
     
 def LogRe(X,y):
