@@ -22,3 +22,20 @@ a) This is an erroneous interpretation. A horizontal line does not indicate any 
 - Hospitals/facilities with small capacity (< 300) should be required to demonstrate upgraded resource allocation for quality care to continue operation.
 - Directives and incentives should be provided for consolidation of hospitals and facilities to have a smaller number of them with higher capacity and number of discharges.
 > f) These recommendations are not supported by the analysis nor will help in any way.
+
+### Recommendations
+## Statistical
+1. Use an statistical test to determine the degree of correlation between two given variables. Initially, a simple linear regression should be enough.
+2. Answer the following questions:
+    - Is ``Excess Readmission Ratio`` correlated with other continous variables?
+    - Does state have an effect on the ``Excess Readmission Ratio`` ?
+
+## Coding
+3. Create a separate ``.py`` file with the code to make it easier to follow.
+4. Annotate code to justify non obvious choices. For example _Why did you use [81:-3] only?_
+5. Avoid redundant code such as :
+~~~Python
+clean_hospital_read_df.loc[:, 'Number of Discharges'] = clean_hospital_read_df['Number of Discharges'].astype(int)
+~~~
+6. Remove entries that are not real numbers (strings, etc.) for the continous data.
+7. Check that all US states are present
