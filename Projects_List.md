@@ -11,8 +11,8 @@ List of Projects by Julio Cardenas-Rodriguez
 - [x] 7. Report on Data Science meetup [link](https://github.com/JCardenasRdz/SpringBoard/blob/master/Projects/07_Meet_Up_Report/07_Meet_Up_Report.md)
 - [x] 8. Work on your Data Story [Link](https://github.com/JCardenasRdz/SpringBoard/blob/master/Projects/08_Work_on_your_Data_Story/08_Work_on_your_Data_Story.ipynb)
 - [x] 9. EDA: Human Body Temperature [Link](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/09_EDA_Human_Body_Temperature)
-- [ ] 10. EDA: Examine Racial Discrimination
-- [ ] 11. EDA: Reduce Hospital Readmissions
+- [x] 10. EDA: Examine Racial Discrimination
+- [x] 11. EDA: Reduce Hospital Readmissions
 - [ ] 12. Capstone Project 1: Inferential Statistics Report
 - [ ] 13. Submit your Capstone Milestone Report
 - [ ] 14. Mini-Project: Informational Interviews
