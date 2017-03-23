@@ -15,31 +15,7 @@ def load_and_clean():
     df = df.iloc[np.isreal(df.Discharges),:]
     return df
     
-def myscatter(df):
-    plt.figure(figsize=(12,7))
-    plt.subplot(1,3,1);
-    plt.scatter(df.Discharges.apply(np.log10), df.Readmissions.apply(np.log10), c=df.Excess_Readmission_Ratio)
-    plt.colorbar()
-    plt.xlabel('Log 10 of Discharges')
-    plt.ylabel('Log 10 of Readmissions')
-    plt.title('Excess Readmission Ratio')
 
-    plt.subplot(1,3,2);
-    bool_ = df.Excess_Readmission_Ratio < 1.0
-    plt.scatter(df.Discharges.apply(np.log10)[bool_], df.Readmissions.apply(np.log10)[bool_], c=df.Excess_Readmission_Ratio[bool_])
-    plt.colorbar()
-    plt.xlabel('Log 10 of Discharges')
-    plt.title('Excess Readmission Ratio < 1.0')
-
-    plt.subplot(1,3,3);
-    bool_ = df.Excess_Readmission_Ratio > 1.0
-    plt.scatter(df.Discharges.apply(np.log10)[bool_], df.Readmissions.apply(np.log10)[bool_], c=df.Excess_Readmission_Ratio[bool_])
-    plt.colorbar()
-    plt.xlabel('Log 10 of Discharges')
-    plt.title('Excess Readmission Ratio > 1.0')
-
-    plt.show()
-    
 def linear_fitting(df_, xdata, ydata):
     sns.regplot( x = xdata, y = ydata, data = df_);
     mod = sm.OLS( df_[ydata].values, df_[xdata].values )
