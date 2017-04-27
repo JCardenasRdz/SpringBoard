@@ -3,17 +3,17 @@ List of Projects by Julio Cardenas-Rodriguez
 (click on to follow link)
 -------------------------
 - [x] 1. 03 Ideas for Capstone Project 01 [link](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/01_Ideas_Capstone_01)
-- [ ] 2. Capstone Project 01 proposal
+- [x] 2. Capstone Project 01 proposal
 - [x] 3. JSON based data exercises [Link](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/03_Jason)
 - [ ] 4. Work on XML based data exercises [here](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/04_Xml)
 - [ ] 5. Mode Analytics case study
-- [ ] 6. Capstone Project 1: Data Wrangling
+- [x] 6. Capstone Project 1: Data Wrangling
 - [x] 7. Report on Data Science meetup [link](https://github.com/JCardenasRdz/SpringBoard/blob/master/Projects/07_Meet_Up_Report/07_Meet_Up_Report.md)
 - [x] 8. Work on your Data Story [Link](https://github.com/JCardenasRdz/SpringBoard/blob/master/Projects/08_Work_on_your_Data_Story/08_Work_on_your_Data_Story.ipynb)
 - [x] 9. EDA: Human Body Temperature [Link](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/09_EDA_Human_Body_Temperature)
 - [x] 10. EDA: Examine Racial Discrimination
 - [x] 11. EDA: Reduce Hospital Readmissions
-- [ ] 12. Capstone Project 1: Inferential Statistics Report
+- [] 12. Capstone Project 1: Inferential Statistics Report
 - [ ] 13. Submit your Capstone Milestone Report
 - [ ] 14. Mini-Project: Informational Interviews
 - [x] 15. [Linear Regression Mini-Project: Boston Housing](https://github.com/jdatascientist/SpringBoard/tree/master/Projects/15_Linear_Regression)
