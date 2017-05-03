@@ -15,3 +15,5 @@ Projects/*/*.xls*
 Projects/*/__pycache__/*
 Projects/*/.DS_Store
 Projects/*/.ipynb_checkpoints/*
+
+Projects_List.md
