@@ -14,13 +14,18 @@ Two types of data are available for this project:
 _*Clinical Data as a XLS file with the following fields:*_
   1. Age (Years)
   2. Race, encoded as:
-  - 1=Caucasian
-  - 3=African American
-  - 4=Asian5=Native Hawaiian
-  - 6=American Indian
-  - 50=Multiple race
-  3. Estrogen Receptor Status (ER) : 1 (Positive), 0 (Negative), Blank (Indeterminate)
-  4. Progesterone Receptor Status (ER) : 1 (Positive), 0 (Negative), Blank (Indeterminate)
+  - 1 = Caucasian
+  - 3 = African American
+  - 4 = Asian
+  - 5 = Native Hawaiian
+  - 6 = American Indian
+  - 50 = Multiple race
+  3. Estrogen Receptor Status (ER+) encoded as:
+  - 1 (Positive)
+  - 0 (Negative)
+  - Blank (Indeterminate)
+  4. Progesterone Receptor Status (PR) encoded as:
+  - 1 (Positive), 0 (Negative), Blank (Indeterminate)
   5. Hormone Receptor Status (ER) : 1 (Positive), 0 (Negative), Blank (Indeterminate)
   6. Bilateral Breast Cancer (both breasts): 1 (Both), 0 (Single)
   7. Breast with major or single Tumor: 1 (Left), 2(Right)
