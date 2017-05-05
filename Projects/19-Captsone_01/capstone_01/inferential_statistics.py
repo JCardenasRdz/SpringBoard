@@ -1,13 +1,14 @@
-import pandas as pd
-from scipy.stats import chi2_contingency
+import pandas as _pd
+from scipy.stats import chi2_contingency as _chi2
 from scipy.stats import fisher_exact
 import matplotlib as plt
 import seaborn as sns
 from scipy import stats
 
-# load data (already cleaned)
-#df = pd.read_csv('ISPY_clinical_clean.csv');
+#
 
+# load data (already cleaned)
+#df = _pd.read_csv('ISPY_clinical_clean.csv');
 
 # func
 def _heading(str_):
@@ -23,7 +24,7 @@ def _con_table():
 def _p_print(p_val, var_,out_):
     print("The p-value for the effect of " + var_ + " on "+out_+" is:" + '{}'.format(p_val))
 
-def process_data(dataframe):
+def prepare_data(dataframe):
     # make a copy
     df = dataframe.copy()
 
@@ -74,10 +75,10 @@ def my_chi2(outcome, categorical_predictors, df):
     for var in categorical_predictors:
         str_ = "effect of " + var + " on " + outcome
         _heading(str_)
-        T = pd.crosstab(df[var],
+        T = _pd.crosstab(df[var],
                         df[outcome]).astype(float);
-        chi2, p, dof, ex  = chi2_contingency( T.values )
-        #odds_ratio, _  = fisher_exact(T.values.T)
+        chi2, p, dof, ex  = _chi2( T.values )
+        #odds_ratio, _  = _fisher_exact(T.values.T)
         print(T)
         _p_print(p, var, outcome)
         print()
@@ -87,7 +88,17 @@ def my_chi2(outcome, categorical_predictors, df):
 def fig_01(ydata,xdata, hue_data):
     sns.boxplot(x= xdata, y=ydata, hue = hue_data, data=df, palette="Set3");
 
-def anova_(predictor):
+def anova_pcr(predictor, df):
+    '''
+    Analysis of variance (ANOVA)
+    -----
+    Inputs:
+    predictor = string for the continous predictor to be used
+
+    Returns:
+    f statistic
+    p-value for the null hypothesis
+    '''
     print('ANOVA for {} on PCR'.format(predictor))
     f, p = stats.f_oneway(df.loc[df.PCR=='No', :][predictor],
                                                     df.loc[df.PCR=='Yes',:][predictor])
@@ -95,8 +106,20 @@ def anova_(predictor):
     print("The p-value for the effect of  " + predictor + " on PCR is:" + '{}'.format(p))
     print(10*'----')
 
+def anova_survival(predictor, df):
+    '''
+    Analysis of variance (ANOVA)
+    -----
+    Inputs:
+    predictor = string for the continous predictor to be used
+
+    Returns:
+    f statistic
+    p-value for the null hypothesis that predictor has an effect on Survival
+    '''
     print('ANOVA for ' + predictor + ' on Survival')
     f, p = stats.f_oneway(df.loc[ df.Survival == 'Alive',:][predictor], df.loc[ df.Survival == 'Dead',:][predictor])
 
     print("The p-value for the effect of  " + predictor + " on Survival is:" + '{}'.format(p))
     print(10*'----')
+gi
