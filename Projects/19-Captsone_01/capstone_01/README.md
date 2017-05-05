@@ -12,23 +12,32 @@ These data for **222 patients** treated for breast cancer was obtained from the 
 Two types of data are available for this project:
 
 _*Clinical Data as a XLS file with the following fields:*_
-  1. Age (Years)
-  2. Race, encoded as:
+  1. `Age` (Years)
+  2. `Race`, encoded as:
   - 1 = Caucasian
   - 3 = African American
   - 4 = Asian
   - 5 = Native Hawaiian
   - 6 = American Indian
   - 50 = Multiple race
-  3. Estrogen Receptor Status (ER+) encoded as:
+  3. Estrogen Receptor Status (`ER+`) encoded as:
   - 1 (Positive)
   - 0 (Negative)
   - Blank (Indeterminate)
-  4. Progesterone Receptor Status (PR) encoded as:
-  - 1 (Positive), 0 (Negative), Blank (Indeterminate)
-  5. Hormone Receptor Status (ER) : 1 (Positive), 0 (Negative), Blank (Indeterminate)
-  6. Bilateral Breast Cancer (both breasts): 1 (Both), 0 (Single)
-  7. Breast with major or single Tumor: 1 (Left), 2(Right)
+  4. Progesterone Receptor Status (`PR+`) encoded as:
+  - 1 (Positive)
+  - 0 (Negative)
+  - Blank (Indeterminate)
+  5. Hormone Receptor Status (`ER+`)
+  - 1 (Positive)
+  - 0 (Negative)
+  - Blank (Indeterminate)
+  6. Bilateral Breast Cancer (`Bilateral`):
+  - 1 (Cancer Detected on both breasts)
+  - 0 (Cancer Detected in a single breast)
+  7. Breast with major or single Tumor (`Laterality`):
+  - 1 (Left breast)
+  - 2 (Right breast)
   8. Tumor Volume at Baseline estimated by MRI (continous)
   9. Tumor Volume Right after NAC estimated by MRI (continous)
   10. Tumor Volume Between cycles of NAC estimated by MRI (continous)
