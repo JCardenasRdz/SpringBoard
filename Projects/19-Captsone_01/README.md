@@ -21,27 +21,31 @@ _*Clinical Data as a XLS file with the following fields:*_
   - 6 = American Indian
   - 50 = Multiple race
   3. Estrogen Receptor Status (`ER+`) encoded as:
-  - 1 (Positive)
-  - 0 (Negative)
-  - Blank (Indeterminate)
+  - 1 = Positive
+  - 0 = Negative
+  - Blank = Indeterminate
   4. Progesterone Receptor Status (`PR+`) encoded as:
-  - 1 (Positive)
-  - 0 (Negative)
-  - Blank (Indeterminate)
+  - 1 = Positive
+  - 0 = Negative
+  - Blank = Indeterminate
   5. Hormone Receptor Status (`ER+`)
-  - 1 (Positive)
-  - 0 (Negative)
-  - Blank (Indeterminate)
+  - 1 = Positive
+  - 0 = Negative
+  - Blank = Indeterminate
   6. Bilateral Breast Cancer (`Bilateral`):
-  - 1 (Cancer Detected on both breasts)
-  - 0 (Cancer Detected in a single breast)
+  - 1 = Cancer Detected on both breasts
+  - 0 = Cancer Detected in a single breast
   7. Breast with major or single Tumor (`Laterality`):
-  - 1 (Left breast)
-  - 2 (Right breast)
-  8. Tumor Volume at Baseline estimated by MRI (continous)
-  9. Tumor Volume Right after NAC estimated by MRI (continous)
-  10. Tumor Volume Between cycles of NAC estimated by MRI (continous)
-  11. Tumor Volume before surgery estimated by MRI (continous)
+  - 1 = Left breast
+  - 2 = Right breast
+  8. Largest tumor dimension at Baseline estimated by MRI (`MRI_LD_Baseline`)
+  - Continous variable
+  9. Largest tumor dimension 1-3 days after NAC estimated by MRI (`MRI_LD_1_3dAC`)
+  - Continous variable
+  10. Largest tumor dimension between cycles of NAC estimated by MRI (`MRI_LD_Int_Reg`)
+  - Continous variable
+  11. Largest tumor dimension before surgery estimated by MRI (`MRI_LD_PreSurg`)
+  - Continous variable
 
 _*MRI with contrast at three time points:*_
 - Modalities: 		MR, SEG
@@ -52,22 +56,24 @@ _*MRI with contrast at three time points:*_
 
 ## Clinical Outcomes
 Several clinical outcomes are described in this data set.
-- Survival Status:
-    - Alive (7)
-    - Dead (8)
-    - Lost to follow up (9)
-- Length of Survival: days from study entry to death or last follow-up
-- Recurrence-free survival (RFS): days from from NCAC start until progression or death
-- RFS indicator: Recurrence-free survival indicator
-    - progression or death (1),
-    - removed from survival curve (0)
-- Pathologic Complete Response (pCR) post-neoadjuvant:
-    - Yes (1)
-    - No (0)
-    - Lost (Blank)
-- Residual Cancer Burden class:
-    - 0 = RCB index (Class 0)
-    - 1 = RCB index less than or equal to 1.36 (Class I)
-    - 2 = RCB index greater than 1.36 or equal to 3.28  (Class II)
-    - 3 = III, RCB index greater than 3.28 (Class III)
-    - Blank = unavailable or no surgery
+1. Survival Status (`Survival`):
+- 7 = Alive
+- 8 = Dead
+- 9 = Lost to follow up
+2. Length of Survival (`Survival_length`):
+- Days from study entry to death or last follow-up
+3. Recurrence-free survival (`RFS`):
+- days from from NCAC start until progression or death
+4. Recurrence-free survival indicator (`RFS_code`)
+- progression or death (1),
+- removed from survival curve (0)
+5. Pathologic Complete Response (`PCR`) post-neoadjuvant ?:
+- 1 = Yes
+- 0 = No
+- Lost (Blank)
+6. Residual Cancer Burden class (`RCB`):
+- 0 = RCB index (Class 0)
+- 1 = RCB index less than or equal to 1.36 (Class I)
+- 2 = RCB index greater than 1.36 or equal to 3.28  (Class II)
+- 3 = III, RCB index greater than 3.28 (Class III)
+- Blank = unavailable or no surgery

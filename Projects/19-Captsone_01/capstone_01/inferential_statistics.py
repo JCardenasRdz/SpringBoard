@@ -1,125 +1,117 @@
 import pandas as _pd
+import numpy as np
 from scipy.stats import chi2_contingency as _chi2
 from scipy.stats import fisher_exact
 import matplotlib as plt
 import seaborn as sns
 from scipy import stats
+from scipy.stats import fisher_exact
+from sklearn import preprocessing
+from statsmodels.formula.api import ols
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
 
-#
-
-# load data (already cleaned)
-#df = _pd.read_csv('ISPY_clinical_clean.csv');
-
-# func
-def _heading(str_):
-    print("")
-    print(10*"-" + str_ + 10*"-")
-
-def _footer():
-    print(10*"==")
-
-def _con_table():
-    print("Contingency Table")
-
-def _p_print(p_val, var_,out_):
-    print("The p-value for the effect of " + var_ + " on "+out_+" is:" + '{}'.format(p_val))
-
-def prepare_data(dataframe):
-    # make a copy
-    df = dataframe.copy()
-
-    df.dropna(axis=0, inplace=True)
-    #rename columns
-    df = df.rename(columns={'ERpos':'ER+',
-                        'PgRpos':'PR+',
-                        'HR Pos':'HR+',
-                        'BilateralCa':"Bilateral",
-                        'sstat':'Survival',
-                        'MRI LD Baseline':'MRI_LD_Baseline',
-                        'MRI LD 1-3dAC':'MRI_LD_3days_after_chemo',
-                        'MRI LD InterReg':'MRI_LD_Int_Reg',
-                        'race_id':'race'})
-    # Rename clinical outcomes and predictors 0/1 to make it easier to display
-    categorical_vars = ['ER+','PR+','HR+','Bilateral','PCR']
-    for str_ in categorical_vars:
-        df[str_] = df[str_].replace([1,0],['Yes','No'])
-
-    # rename other predictors and outcomes
-    df.Survival = df.Survival.replace([7,8,9], ['Alive','Dead','Lost'])
-    df.Laterality = df.Laterality.replace([1,2],['Left','Right'])
-    df.race = df.race.replace([1,3,4,5,6,50],['White','Black','Asian',
-                                            'Pacific','NativeAm','Multiple'])
-
-    # remove patients lost to follow up
-    df = df.loc[df.Survival != 'Lost',:]
-
-    # output
-    return df
-
-# Function for Chi2
-def my_chi2(outcome, categorical_predictors, df):
+# CATEGORICAL PREDICTORS and CATEGORICAL OUTCOMES
+def contingency_table(predictor, outcome, dataframe):
     '''
-    print results from chi-squared test
-    -----
+    contingency_table(predictor, outcome, dataframe)
+    '''
+    T = _pd.crosstab(dataframe[predictor], dataframe[outcome]).astype(float);
+    T = T.loc[['Yes','No']]
+    T = T[['Yes','No']]
+    return T
+
+def relative_risk(T):
+    '''
+    source: https://www.medcalc.org/calc/relative_risk.php
+    RR, lb, ub  = relative_risk(T)
+    Estimate the relavite risk (RR), its lower 95%CI (lb), and its upper 95%CI(ub)
+    '''
+    a = T[0,0]
+    b = T[0,1]
+    c = T[1,0]
+    d = T[1,1]
+    SE = np.sqrt( 1/a + 1/c - 1/(a+b) - 1/(c+d) )
+
+    p_of_first_row = a / (a+b)
+    p_of_seconds_row = c / (c+d)
+    RR = p_of_first_row/p_of_seconds_row
+
+    SE = np.sqrt( 1/a + 1/c - (1/(a+b)) - (1/(c+d)) )
+    CI_95pct_lb = np.exp(np.log(RR) - 1.96 * (SE))
+    CI_95pct_ub = np.exp(np.log(RR) + 1.96 * (SE))
+
+    return np.round(RR,4), np.round(CI_95pct_lb,4), np.round(CI_95pct_ub,4)
+
+def categorical_data(outcome, categorical_predictors, df):
+    '''
+    --------
+    Syntaxis
+    categorical_data(outcome, categorical_predictors, df)
+    --------
     Inputs:
-    df = Pandas Data Frame with the data
     outcome = string with the categorical outcome to be studied
     predictors = list of strings with the categorical predictors
-
-    my_chi2(outcome, df)
+    df = Pandas Data Frame with the data
+    -------
+    Returns:
+    Pandas df with the following columns for each predictor
+    p-value : p-value of chi-squared test
+    Relative_Risk: Relative Risk (RR) of first row vs second row
+    RR_lb: Lower bound of the 95% C.I for the RR
+    RR_ub: Upper bound of the 95% C.I for the RR
     '''
     #categorical_predictors = df.columns[2:7]
+    num_pred = len(categorical_predictors)
+    df2 = _pd.DataFrame(np.random.randn(num_pred, 4))
+    df2 = df2.set_index([categorical_predictors])
+    df2.columns = ['p-value', 'Relative_Risk','RR_lb','RR_ub']
 
-    print("Reminder: The null hypothesis for chi-square tes is that NO association exists between the two variables.")
-    print(outcome)
-    for var in categorical_predictors:
-        str_ = "effect of " + var + " on " + outcome
-        _heading(str_)
-        T = _pd.crosstab(df[var],
-                        df[outcome]).astype(float);
-        chi2, p, dof, ex  = _chi2( T.values )
-        #odds_ratio, _  = _fisher_exact(T.values.T)
-        print(T)
-        _p_print(p, var, outcome)
-        print()
+    for idx, var in enumerate(categorical_predictors):
+        T = contingency_table(var, outcome, df)
+        _, p , _, _= _chi2( T.values )
+        RR, lb, ub = relative_risk(T.values)
 
-# ANOVA age vs pCR
+        df2.iloc[idx,0] = p;
+        df2.iloc[idx,1] = RR;
+        df2.iloc[idx,2] = lb;
+        df2.iloc[idx,3] = ub;
+    return df2
 
-def fig_01(ydata,xdata, hue_data):
-    sns.boxplot(x= xdata, y=ydata, hue = hue_data, data=df, palette="Set3");
+# Continous PREDICTORS and CATEGORICAL OUTCOMES
 
-def anova_pcr(predictor, df):
-    '''
-    Analysis of variance (ANOVA)
-    -----
-    Inputs:
-    predictor = string for the continous predictor to be used
 
-    Returns:
-    f statistic
-    p-value for the null hypothesis
-    '''
-    print('ANOVA for {} on PCR'.format(predictor))
-    f, p = stats.f_oneway(df.loc[df.PCR=='No', :][predictor],
-                                                    df.loc[df.PCR=='Yes',:][predictor])
+def linear_models(df, outcome, predictors, print_results = 1):
+    # create new dataframe with predictors
+    df2 = _pd.DataFrame()
+    df2[predictors] = df[predictors]
 
-    print("The p-value for the effect of  " + predictor + " on PCR is:" + '{}'.format(p))
-    print(10*'----')
+    # ad outcome to dataframe with predictors encoded as floating
+    df2[outcome]   = preprocessing.LabelEncoder().fit_transform( df[outcome].values )
 
-def anova_survival(predictor, df):
-    '''
-    Analysis of variance (ANOVA)
-    -----
-    Inputs:
-    predictor = string for the continous predictor to be used
+    # create formula from strings
+    formula = outcome + "~" + "+".join(predictors )
 
-    Returns:
-    f statistic
-    p-value for the null hypothesis that predictor has an effect on Survival
-    '''
-    print('ANOVA for ' + predictor + ' on Survival')
-    f, p = stats.f_oneway(df.loc[ df.Survival == 'Alive',:][predictor], df.loc[ df.Survival == 'Dead',:][predictor])
+    # perform ANOVA
+    SPY_lm = ols(formula, data = df2 ).fit()
+    anova = sm.stats.anova_lm(SPY_lm, typ=2) # Type 2 ANOVA DataFrame
+    if print_results == 1:
+        print(anova)
+    return anova, SPY_lm
 
-    print("The p-value for the effect of  " + predictor + " on Survival is:" + '{}'.format(p))
-    print(10*'----')
-gi
+def anova_MRI(outcome, df):
+    mri_predictors= ['MRI_LD_Baseline','MRI_LD_1_3dAC', 'MRI_LD_Int_Reg', 'MRI_LD_PreSurg']
+    results = results = _pd.DataFrame(np.random.random(size=(len(mri_predictors),1)),
+                                          index=mri_predictors, columns=['p-value'])
+    for idx, pred in enumerate(mri_predictors):
+        p = list();     p.append(pred)
+        nova_table, _ = linear_models(df, outcome, p, print_results=0);
+        results.ix[idx] = nova_table['PR(>F)'].values[0]
+
+    f, (ax1, ax2) = plt.subplots(2,2, figsize=(10,10))
+    sns.boxplot(x= outcome, y=mri_predictors[0], data=df, palette="Set3", ax=ax1[0]).set_title('p-value = '+ str(results.values[0]));
+    sns.boxplot(x= outcome, y=mri_predictors[1], data=df, palette="Set3", ax=ax2[0]).set_title('p-value = '+ str(results.values[1]));
+    sns.boxplot(x= outcome, y=mri_predictors[2], data=df, palette="Set3", ax=ax1[1]).set_title('p-value = '+ str(results.values[2]));
+    sns.boxplot(x= outcome, y=mri_predictors[3], data=df, palette="Set3", ax=ax2[1]).set_title('p-value = '+ str(results.values[3]));
+
+    return results

@@ -11,9 +11,6 @@ importlib.reload(inferential_statistics)
 file = './raw_data/clinical/I-SPY_1_All_Patient_Clinical_and_Outcome_Data.xlsx'
 df = clean_data.clean_my_data(file)
 
-# prepare data for inferential_statistics
-df = inferential_statistics.prepare_data(df)
-
 # assign all categorical predictors
 predictors = df.columns[1:7]
 
