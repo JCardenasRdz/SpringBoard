@@ -113,5 +113,5 @@ def anova_MRI(outcome, df):
     sns.boxplot(x= outcome, y=mri_predictors[1], data=df, palette="Set3", ax=ax2[0]).set_title('p-value = '+ str(results.values[1]));
     sns.boxplot(x= outcome, y=mri_predictors[2], data=df, palette="Set3", ax=ax1[1]).set_title('p-value = '+ str(results.values[2]));
     sns.boxplot(x= outcome, y=mri_predictors[3], data=df, palette="Set3", ax=ax2[1]).set_title('p-value = '+ str(results.values[3]));
-
+    plt.show()
     return results
