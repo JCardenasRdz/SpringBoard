@@ -15,3 +15,6 @@ Projects/*/*.xls*
 Projects/*/__pycache__/*
 Projects/*/.DS_Store
 Projects/*/.ipynb_checkpoints/*
+
+# Learning
+./Learning/*
