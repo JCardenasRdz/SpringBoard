@@ -1,3 +1,4 @@
 ./Hashing_MNIST/*
 ./raw_data/mri/*
 ./References/*
+./Keras_MNIST/*
