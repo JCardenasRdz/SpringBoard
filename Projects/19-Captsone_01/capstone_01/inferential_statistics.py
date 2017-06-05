@@ -96,7 +96,9 @@ def linear_models(df, outcome, predictors, print_results = 1):
     SPY_lm = ols(formula, data = df2 ).fit()
     anova = sm.stats.anova_lm(SPY_lm, typ=2) # Type 2 ANOVA DataFrame
     if print_results == 1:
+        print(15*'---')
         print(anova)
+        print(15*'---')
     return anova, SPY_lm
 
 def anova_MRI(outcome, df):
@@ -115,3 +117,15 @@ def anova_MRI(outcome, df):
     sns.boxplot(x= outcome, y=mri_predictors[3], data=df, palette="Set3", ax=ax2[1]).set_title('p-value = '+ str(results.values[3]));
     plt.show()
     return results
+def effect_size(df,predictors, outcome):
+    all_ =  predictors + [outcome]
+    legend = 'Predictor of ' + outcome
+    mean_ = df[all_].groupby( outcome ).mean().values
+    std_ =  np.std( df[predictors].values.flatten() )
+    delta = mean_[0,:] - mean_[1,:]
+    effect_size = _pd.DataFrame(delta/std_)
+
+    effect_size[legend] = predictors
+    effect_size =    effect_size.set_index(legend)
+    effect_size.columns = ['Effect Size']
+    return effect_size
